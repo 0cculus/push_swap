@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse.c                                          :+:      :+:    :+:   */
+/*   small.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 15:35:57 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/12 09:13:46 by brheaume         ###   ########.fr       */
+/*   Created: 2023/05/18 11:37:32 by brheaume          #+#    #+#             */
+/*   Updated: 2023/05/19 13:07:28 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_reverse(t_stack **head, char *move)
+void	ft_small_sort(t_stack **head)
 {
-	if (*head)
-	{
-		*head = (*head)->prev;
-		if (move)
-			ft_putendl_fd(move, TERM_OUTPUT);
-	}
-}
+	int	max;
 
-void	ft_rrr(t_stack **a, t_stack **b)
-{
-	ft_reverse(a, NULL);
-	ft_reverse(b, NULL);
-	ft_putendl_fd("rrr", TERM_OUTPUT);
+	max = ft_max(head);
+	if (ft_check_sort(head))
+		return ;
+	if ()
 }

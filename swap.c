@@ -6,29 +6,29 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 13:05:38 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/05 16:21:54 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:56:28 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_stack **head)
+void	ft_swap(t_stack **head, char *move)
 {
-	t_stack	*current;
-	
+	int	temp;
+
 	if (ft_list_count(*head) > 1)
 	{
-		current = *head;
-		*head = (*head)->next;
-		(*head)->next = current;
+		temp = (*head)->val;
+		(*head)->val = (*head)->next->val;
+		(*head)->next->val = temp;
+		if (move)
+			ft_putendl_fd(move, TERM_OUTPUT);
 	}
 }
 
 void	ft_ss(t_stack **a, t_stack **b)
 {
-	if (a)
-		ft_swap(a);
-	if (b)
-		ft_swap(b);
+	ft_swap(a, NULL);
+	ft_swap(b, NULL);
 	ft_putendl_fd("ss", TERM_OUTPUT);
 }

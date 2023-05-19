@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse.c                                          :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 15:35:57 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/12 09:13:46 by brheaume         ###   ########.fr       */
+/*   Created: 2023/05/16 13:56:41 by brheaume          #+#    #+#             */
+/*   Updated: 2023/05/18 14:04:39 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_reverse(t_stack **head, char *move)
+int	ft_fewer_steps(t_stack *head, int max)
 {
-	if (*head)
-	{
-		*head = (*head)->prev;
-		if (move)
-			ft_putendl_fd(move, TERM_OUTPUT);
-	}
-}
+	t_stack	*current;
+	int		front;
+	int		back;
 
-void	ft_rrr(t_stack **a, t_stack **b)
-{
-	ft_reverse(a, NULL);
-	ft_reverse(b, NULL);
-	ft_putendl_fd("rrr", TERM_OUTPUT);
+	back = 0;
+	front = 0;
+	current = head;
+	while (current->val != max)
+	{
+		front++;
+		current = current->next;
+	}
+	current = head;
+	while (current->val != max)
+	{
+		back--;
+		current = current->prev;
+	}
+	if (ft_absolute(front) < ft_absolute(back))
+		return (front);
+	else
+		return (back);
 }

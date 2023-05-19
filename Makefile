@@ -6,7 +6,7 @@
 #    By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:45:33 by brheaume          #+#    #+#              #
-#    Updated: 2023/05/05 16:31:08 by brheaume         ###   ########.fr        #
+#    Updated: 2023/05/18 10:53:09 by brheaume         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ SRC = main.c \
 	  push.c \
 	  list.c \
 	  utils.c \
-	  error.c
+	  error.c \
+	  verify.c \
+	  algo.c \
+	  moves.c
 
 OBJ = ${SRC:.c=.o}
 
@@ -31,20 +34,27 @@ LIBERATE = rm -f
 LIBFT = libft.a
 LIBDIR = libft/
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBDIR)$(LIBFT) -o $(NAME)
-
 all: libft $(NAME)
 
-clean:
-	$(LIBERATE) $(OBJ)
-
-fclean: clean
-	$(LIBERATE) $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBDIR)$(LIBFT) -o $(NAME)
 
 libft:
 	$(MAKE) -C $(LIBDIR)
 
+clean:
+	$(LIBERATE) $(OBJ)
+	$(LIBERATE) $(LIBDIR)*.o
+
+fclean: clean
+	$(LIBERATE) $(NAME)
+	$(LIBERATE) $(LIBDIR)$(LIBFT)
+
 re: fclean all
+
+visu:
+	./push_swap_visualizer/build/bin/visualizer
+
+vis: visu
 
 .PHONY: all libft
