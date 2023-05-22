@@ -14,24 +14,23 @@
 
 void	ft_add_index(t_stack *head)
 {
-	t_stack	*indexed;
 	t_stack	*current;
-	int		i;
-	
-	current = head;
-	while (current->next != head)
+	t_stack	*top;
+	int		value;
+	int		len;
+
+	len = ft_list_count(head) - 1;
+	while (len > 0)
 	{
-		i = 0;
-		indexed = head;
-		while (indexed != head)
-		{
-			if (head->val < head->next->val)
-				head->i = i;
-			i++;
-			head = head->next;
-			indexed = indexed->next;
-		}
-		current = current->next;
+		value = INT_MIN;
+		current = head;
+		top = NULL;
+		while (current->next != head)
+			ft_check_val(&current, &head, &top, &value);
+		ft_check_val(&current, &head, &top, &value);
+		if (top != NULL)
+			top->i = len;
+		len--;
 	}
 }
 
@@ -47,7 +46,7 @@ void	ft_move_node(t_stack **head, t_stack *node)
 	prev_head->prev = node;
 }
 
-void	ft_create_node(t_stack **head, int value)
+void	ft_create_node(t_stack **head, int val)
 {
 	t_stack	*new_tail;
 	t_stack	*prev_tail;
@@ -55,7 +54,7 @@ void	ft_create_node(t_stack **head, int value)
 	new_tail = ft_calloc(NODE, sizeof(t_stack));
 	if (!new_tail)
 		return ;
-	new_tail->val = value;
+	new_tail->val = val;
 	prev_tail = (*head)->prev;
 	new_tail->prev = prev_tail;
 	new_tail->next = *head;
@@ -63,14 +62,14 @@ void	ft_create_node(t_stack **head, int value)
 	prev_tail->next = new_tail;
 }
 
-t_stack	*ft_init_list(int value)
+t_stack	*ft_init_list(int val)
 {
 	t_stack	*res;
 
 	res = ft_calloc(NODE, sizeof(t_stack));
 	if (!res)
 		return (NULL);
-	res->val = value;
+	res->val = val;
 	res->next = res;
 	res->prev = res;
 	return (res);

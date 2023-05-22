@@ -16,8 +16,9 @@ void	ft_small_sort(t_stack **head)
 {
 	int	max;
 
-	max = ft_max(head);
-	if (ft_check_sort(head))
+	max = ft_max(*head);
+	if (ft_check_sort(*head))
 		return ;
-	if ()
+	if (max)
+		;
 }

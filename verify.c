@@ -17,6 +17,8 @@ int	ft_verify_dup(t_stack *head)
 	t_stack	*current;
 
 	current = head;
+	while (current->next != head)
+		current = current->next;
 	return (CORRECT);
 }
 

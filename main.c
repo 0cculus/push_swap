@@ -40,13 +40,14 @@ int	main(int ac, char **av)
 
 	if (ac > 1)
 	{
+		b = NULL;
 		a = ft_create_list(av);
 		if (!ft_verify_dup(a))
 			ft_error_simple("Duplicate");
 		ft_add_index(a);
 		ft_pass_through(a);
-		//ft_sort(&a, &b);
-		ft_free_all(&a, &b);
+		ft_sort(&a, &b);
+		//ft_free_all(&a, &b);
 	}
 	return (0);
 }

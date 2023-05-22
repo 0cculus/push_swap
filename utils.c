@@ -65,3 +65,16 @@ void	ft_pass_through(t_stack *head)
 	else
 		ft_putendl_fd("(null)", TERM_OUTPUT);
 }
+
+void ft_check_val(t_stack **current, t_stack **head, t_stack **top, int *val)
+{
+	if ((*current)->val > *val && (*current)->i == 0)
+	{
+		*val = (*current)->val;
+		*top = *current;
+		(*top)->val = (*current)->val;
+		*current = *head;
+	}
+	else
+		*current = (*current)->next;
+}

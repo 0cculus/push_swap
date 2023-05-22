@@ -27,14 +27,12 @@ int	ft_check_sort(t_stack *head)
 }
 
 /*  -- Old dumb sort algo -- */
-static void	ft_dumb_sort(t_stack **a, t_stack **b)
+/*static void	ft_dumb_sort(t_stack **a, t_stack **b)
 {
-	t_stack	*current;
 	int		moves;
 	int		max;
 
 	max = ft_max(*b);
-	current = *b;
 	moves = ft_fewer_steps(*b, max);
 	while ((*b)->prev->val < max)
 	{
@@ -46,26 +44,17 @@ static void	ft_dumb_sort(t_stack **a, t_stack **b)
 	if (ft_list_count(*b) > 1)
 		ft_reverse(b, "rrb");
 	ft_push(b, a, "pa");
-}
+}*/
 
 static void	ft_move_sort(t_stack **a, t_stack **b)
 {
-	t_stack	*current;
-	int		max;
+	size_t	len;
 
-	if (!(*b))
+	len = ft_list_count(*a);
+	if ((*a)->i <= len / 2)
 		ft_push(a, b, "pb");
 	else
-	{
-		max = ft_max(*b);
-		ft_push(a, b, "pb");
-		current = *b;
-		while (current->val < max)
-		{
-			ft_rotate(b, "rb");
-			current = current->next;
-		}
-	}
+		ft_rotate(a, "ra");
 }
 
 /*static void	ft_move_back(t_stack **a, t_stack **b)
@@ -84,15 +73,10 @@ static void	ft_move_sort(t_stack **a, t_stack **b)
 
 void	ft_sort(t_stack **a, t_stack **b)
 {
-	t_stack	*current;
-
-	current = *a;
 	if (ft_check_sort(*a))
-	{
 		return ;
-	}
-	while (ft_list_count(*a) != 0)
+	while (ft_list_count(*a) != 3)
 		ft_move_sort(a, b);
-	while (ft_list_count(*b) != 0)
-		ft_dumb_sort(a, b);
+	//while (ft_list_count(*b) != 0)
+	//	ft_dumb_sort(a, b);
 }
