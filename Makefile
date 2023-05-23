@@ -6,7 +6,7 @@
 #    By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:45:33 by brheaume          #+#    #+#              #
-#    Updated: 2023/05/18 10:53:09 by brheaume         ###   ########.fr        #
+#    Updated: 2023/05/23 16:19:01 by brheaume         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC = main.c \
 	  error.c \
 	  verify.c \
 	  algo.c \
+	  small.c \
+	  limit.c \
 	  moves.c
 
 OBJ = ${SRC:.c=.o}

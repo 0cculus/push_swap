@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:39:23 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/19 15:33:31 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:26:57 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct s_stack
 {
-	size_t			i;
+	int				i;
 	int				val;
 	struct s_stack	*next;
 	struct s_stack	*prev;
@@ -39,7 +39,7 @@ typedef struct s_data
 }	t_data;
 
 int		ft_max(t_stack *head);
-int		ft_absolute(int nb);
+int		ft_max_i(t_stack *head);
 int		ft_verify_arg(char *src);
 int		ft_verify_dup(t_stack *head);
 int		ft_list_count(t_stack *head);
@@ -47,6 +47,7 @@ int		ft_check_sort(t_stack *head);
 int		ft_fewer_steps(t_stack *head, int max);
 
 void	ft_add_index(t_stack *head);
+void	ft_small_sort(t_stack **head);
 void	ft_pass_through(t_stack *head);
 void	ft_error_simple(char *message);
 void	ft_ss(t_stack **a, t_stack **b);
@@ -60,6 +61,7 @@ void	ft_reverse(t_stack **head, char *move);
 void	ft_create_node(t_stack **head, int value);
 void	ft_move_node(t_stack **head, t_stack *node);
 void	ft_push(t_stack **from, t_stack **to, char *move);
+void	ft_check_val(t_stack **node, t_stack **head, t_stack **top, int *val);
 
 t_stack	*ft_init_list(int value);
 t_stack	*ft_get_lowest_value_node(t_stack *head, t_data nb);
