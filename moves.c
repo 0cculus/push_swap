@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	ft_fewer_steps(t_stack *head, int max)
+int	ft_fewer_steps(t_stack *head, int goal)
 {
 	t_stack	*current;
 	int		front;
@@ -21,13 +21,13 @@ int	ft_fewer_steps(t_stack *head, int max)
 	back = 0;
 	front = 0;
 	current = head;
-	while (current->val != max)
+	while (current->val != goal)
 	{
 		front++;
 		current = current->next;
 	}
 	current = head;
-	while (current->val != max)
+	while (current->val != goal)
 	{
 		back--;
 		current = current->prev;

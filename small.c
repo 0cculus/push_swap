@@ -27,6 +27,24 @@ void	ft_small_sort(t_stack **head)
 		ft_swap(head, "sa");
 }
 
-/*void	ft_med_sort(t_stack **head)
+void	ft_med_sort(t_stack **head, t_stack **to)
 {
-}*/
+	int		min;
+	int		moves;
+
+	min = ft_min(*head);
+	moves = ft_fewer_steps(*head, min);
+	if ((*head)->val != min)
+	{
+		while ((*head)->val != min)
+		{
+			if (moves < 0)
+				ft_reverse(head, "rra");
+			else
+				ft_rotate(head, "ra");
+		}
+	}
+	ft_push(head, to, "pb");
+	ft_small_sort(head);
+	ft_push(to, head, "pa");
+}

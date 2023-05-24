@@ -61,7 +61,7 @@ int	ft_min(t_stack *head)
 			min = current->val;
 		current = current->next;
 	}
-	if (min < current->val)
+	if (min > current->val)
 		min = current->val;
 	return (min);
 }

@@ -50,6 +50,10 @@ static void	ft_dumb_sort(t_stack **a, t_stack **b)
 
 static void	ft_move_sort(t_stack **a, t_stack **b, int *moves, int len)
 {
+	//int	min;
+
+	//min = ft_min_i(*a);
+	//if ()
 	if ((*a)->i < len / 2)
 		ft_push(a, b, "pb");
 	else
@@ -57,18 +61,18 @@ static void	ft_move_sort(t_stack **a, t_stack **b, int *moves, int len)
 	(*moves)++;
 }
 
-static void	ft_sort_back(t_stack **a)
+/*static void	ft_sort_back(t_stack **a)
 {
-	int		max;
+	int		min;
 
-	max = ft_max(*a);
-	if (ft_fewer_steps(*a, max) < 0)
+	min = ft_max(*a);
+	if (ft_fewer_steps(*a, min) < 0)
 		while ((*a)->i > 0)
 			ft_rotate(a, "ra");
 	else
 		while ((*a)->i < 0)
 			ft_reverse(a, "rra");
-}
+}*/
 
 void	ft_sort(t_stack **a, t_stack **b)
 {
@@ -79,18 +83,23 @@ void	ft_sort(t_stack **a, t_stack **b)
 	init_len = ft_list_count(*a);
 	if (ft_check_sort(*a))
 		return ;
-	while (ft_list_count(*a) != 3 && moves < init_len)
-		ft_move_sort(a, b, &moves, init_len);
-	while (ft_list_count(*a) != 3)
+	if (init_len <= 3)
+		ft_small_sort(a);
+	else if(init_len < 5)
+		ft_med_sort(a, b);
+	else
 	{
-		if ((*a)->i < init_len - 3)
-			ft_push(a, b, "pb");
-		else
-			ft_rotate(a, "ra");
+		while (ft_list_count(*a) != 3 && moves < init_len)
+			ft_move_sort(a, b, &moves, init_len);
+		while (ft_list_count(*a) != 3)
+		{
+			if ((*a)->i < init_len - 3)
+				ft_push(a, b, "pb");
+			else
+				ft_rotate(a, "ra");
+		}
+		ft_small_sort(a);
+		while (ft_list_count(*b) != 0)
+			ft_dumb_sort(a, b);
 	}
-	ft_small_sort(a);
-	while (ft_list_count(*b) != 0)
-		ft_dumb_sort(a, b);
-	if (!ft_check_sort(*a))
-		ft_sort_back(a);
 }

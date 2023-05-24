@@ -39,12 +39,14 @@ typedef struct s_data
 }	t_data;
 
 int		ft_max(t_stack *head);
+int		ft_min(t_stack *head);
 int		ft_max_i(t_stack *head);
+int		ft_min_i(t_stack *head);
 int		ft_verify_arg(char *src);
 int		ft_verify_dup(t_stack *head);
 int		ft_list_count(t_stack *head);
 int		ft_check_sort(t_stack *head);
-int		ft_fewer_steps(t_stack *head, int max);
+int		ft_fewer_steps(t_stack *head, int goal);
 
 void	ft_add_index(t_stack *head);
 void	ft_small_sort(t_stack **head);
@@ -58,6 +60,7 @@ void	ft_swap(t_stack **head, char *move);
 void	ft_free_all(t_stack **a, t_stack **b);
 void	ft_rotate(t_stack **head, char *move);
 void	ft_reverse(t_stack **head, char *move);
+void	ft_med_sort(t_stack **head, t_stack **to);
 void	ft_create_node(t_stack **head, int value);
 void	ft_move_node(t_stack **head, t_stack *node);
 void	ft_push(t_stack **from, t_stack **to, char *move);
