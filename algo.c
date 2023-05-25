@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:35:55 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/23 16:10:20 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/05/25 11:35:11 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int	ft_check_sort(t_stack *head)
 	return (CORRECT);
 }
 
-/*  -- Old dumb sort algo -- */
-static void	ft_dumb_sort(t_stack **a, t_stack **b)
+static void	ft_shake_sort(t_stack **a, t_stack **b)
 {
 	int		moves;
 	int		max_i;
@@ -48,58 +47,68 @@ static void	ft_dumb_sort(t_stack **a, t_stack **b)
 	ft_push(b, a, "pa");
 }
 
-static void	ft_move_sort(t_stack **a, t_stack **b, int *moves, int len)
+static void	ft_move_sort(t_stack **a, t_stack **b, int len)
 {
-	//int	min;
+	int	moves;
 
-	//min = ft_min_i(*a);
-	//if ()
-	if ((*a)->i < len / 2)
-		ft_push(a, b, "pb");
-	else
-		ft_rotate(a, "ra");
-	(*moves)++;
+	moves = 0;
+	while (ft_list_count(*a) != 3 && moves < len)
+	{
+		if ((*a)->i < len / 2)
+			ft_push(a, b, "pb");
+		else
+			ft_rotate(a, "ra");
+		moves++;
+	}
+	while (ft_list_count(*a) != 3)
+	{
+		if ((*a)->i < len - 3)
+			ft_push(a, b, "pb");
+		else
+			ft_rotate(a, "ra");
+	}
 }
 
-/*static void	ft_sort_back(t_stack **a)
+void	ft_radix(t_stack **a, t_stack **b)
 {
-	int		min;
+	int		j;
+	int		i;
 
-	min = ft_max(*a);
-	if (ft_fewer_steps(*a, min) < 0)
-		while ((*a)->i > 0)
-			ft_rotate(a, "ra");
-	else
-		while ((*a)->i < 0)
-			ft_reverse(a, "rra");
-}*/
+	j = 0;
+	while (!ft_check_sort(*a))
+	{
+		i = 0;
+		while (i++ < ft_list_count(*a) + ft_list_count(*b))
+		{
+			if ((((*a)->val >> j) & 1) == 1)
+				ft_rotate(a, "ra");
+			else
+				ft_push(a, b, "pb");
+		}
+		j++;
+		while (ft_list_count(*b) != 0)
+			ft_push(b, a, "pa");
+	}
+}
 
 void	ft_sort(t_stack **a, t_stack **b)
 {
 	int	init_len;
-	int		moves;
 
-	moves = 0;
 	init_len = ft_list_count(*a);
 	if (ft_check_sort(*a))
 		return ;
 	if (init_len <= 3)
 		ft_small_sort(a);
-	else if(init_len < 5)
+	else if (init_len < 5)
 		ft_med_sort(a, b);
-	else
+	else if (init_len < 100)
 	{
-		while (ft_list_count(*a) != 3 && moves < init_len)
-			ft_move_sort(a, b, &moves, init_len);
-		while (ft_list_count(*a) != 3)
-		{
-			if ((*a)->i < init_len - 3)
-				ft_push(a, b, "pb");
-			else
-				ft_rotate(a, "ra");
-		}
+		ft_move_sort(a, b, init_len);
 		ft_small_sort(a);
 		while (ft_list_count(*b) != 0)
-			ft_dumb_sort(a, b);
+			ft_shake_sort(a, b);
 	}
+	else
+		ft_radix(a, b);
 }

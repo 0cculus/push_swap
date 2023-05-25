@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 13:05:38 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/12 12:56:28 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:13:42 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	ft_swap(t_stack **head, char *move)
 		temp = (*head)->val;
 		(*head)->val = (*head)->next->val;
 		(*head)->next->val = temp;
+		temp = (*head)->i;
+		(*head)->i = (*head)->next->i;
+		(*head)->next->i = temp;
 		if (move)
 			ft_putendl_fd(move, TERM_OUTPUT);
 	}

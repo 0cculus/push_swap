@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 15:39:23 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/23 15:26:57 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:15:27 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	ft_ss(t_stack **a, t_stack **b);
 void	ft_rr(t_stack **a, t_stack **b);
 void	ft_rrr(t_stack **a, t_stack **b);
 void	ft_sort(t_stack **a, t_stack **b);
+void	ft_radix(t_stack **a, t_stack **b);
 void	ft_swap(t_stack **head, char *move);
 void	ft_free_all(t_stack **a, t_stack **b);
 void	ft_rotate(t_stack **head, char *move);
