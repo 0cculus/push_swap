@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:35:55 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/25 11:35:11 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:52:19 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_radix(t_stack **a, t_stack **b)
 		i = 0;
 		while (i++ < ft_list_count(*a) + ft_list_count(*b))
 		{
-			if ((((*a)->val >> j) & 1) == 1)
+			if (((*a)->val >> j) & 1)
 				ft_rotate(a, "ra");
 			else
 				ft_push(a, b, "pb");

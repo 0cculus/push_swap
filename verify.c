@@ -6,7 +6,7 @@
 /*   By: brheaume <marvin@42quebec.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 16:36:33 by brheaume          #+#    #+#             */
-/*   Updated: 2023/05/25 10:16:30 by brheaume         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:53:23 by brheaume         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_verify_dup(t_stack *head)
 	check = head;
 	current = head;
 	len = ft_list_count(head);
-	while (--len)
+	while (len > 0)
 	{
 		while (current->next != head)
 		{
@@ -29,7 +29,10 @@ int	ft_verify_dup(t_stack *head)
 				return (INCORRECT);
 			current = current->next;
 		}
+		if (current->val == check->val && current != check)
+			return (INCORRECT);
 		check = check->next;
+		len--;
 	}
 	return (CORRECT);
 }
